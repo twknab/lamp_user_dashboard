@@ -1,0 +1,46 @@
+body {
+  font-family: arial, courier;
+}
+
+.top-nav,
+.top-nav>li {
+  display: inline-block;
+  padding: 5px;
+  margin: 5px;
+}
+
+.err {
+  padding: 15px;
+  border: 1px solid silver;
+  background: lightgrey;
+  text-align: center;
+  font-style: italic;
+  margin: 15px;
+}
+
+tr {
+  text-align: center;
+}
+
+table {
+  padding: 15px;
+  width: 100%;
+  background-color: aliceblue;
+}
+
+.comment {
+  margin-left: 30px;
+  padding: 5px;
+}
+.message {
+  margin-left: 15px;
+  padding: 5px;
+}
+.comment-form {
+  margin-left: 45px;
+  padding: 5px;
+  margin-bottom: 15px;
+}
+fieldset {
+  margin: 15px;
+}
