@@ -47,44 +47,48 @@ require_once(APPPATH.'modules/time.php');
       <input type="submit" value="Post">
     </form>
  </fieldset>
- <h2>Messages:</h2>
- <?php 
-  if (count($messages) >= 1) 
-  {
-    foreach ($messages as $message) 
+ <fieldset>
+  <legend>
+    <h2>Messages:</h2>
+  </legend>
+  <?php 
+    if (count($messages) >= 1) 
     {
- ?>
-  <div class='message'>
-    <p><strong><a href="/users/show/<?=$message['user_id']?>"><?=$message['first_name'] . " " . $message['last_name']?></strong></a> wrote (<?php echo time_ago(strtotime($message['created_at']))?>):</p>
-    <p><?=$message['message']?></p>
-    <?php 
-      foreach ($comments as $comment) 
+      foreach ($messages as $message) 
       {
-        if ($comment['message_id'] === $message['id']) 
-        { ?>
-          <div class='comment'>
-            <p><a href="/users/show/<?=$comment['user_id']?>"><?=$comment['first_name'] . " " . $comment['last_name']?></a> wrote: (<?php echo time_ago(strtotime($comment['created_at']))?>)</p>
-            <p><?=$comment['comment']?></p>
-          </div>
-        <?php }
-      }
-    ?>
-    <?php if (isset($errors_comment)) { ?>
-      <div class="err"><?=$errors_comment?></div>
-    <?php } ?>
-    <?php 
-      $hidden = array('sender_id' => $logged_in['id'], 'receiver_id' => $user['id'], 'message_id' => $message['id']);
-      echo form_open('/comment', 'class="comment-form"', $hidden); 
-    ?>
-      <textarea name="comment" id="comment" cols="30" rows="10" placeholder="Leave a comment here."></textarea>
-      <input type="submit" value="Post">
-    </form>
-  </div>
- <?php }
-  } // NO MESSAGES YET
-  else { ?>
-    <p>No messages yet!</p>
+  ?>
+    <div class='message'>
+      <p><strong><a href="/users/show/<?=$message['user_id']?>"><?=$message['first_name'] . " " . $message['last_name']?></strong></a> wrote (<?php echo time_ago(strtotime($message['created_at']))?>):</p>
+      <p><?=$message['message']?></p>
+      <?php 
+        foreach ($comments as $comment) 
+        {
+          if ($comment['message_id'] === $message['id']) 
+          { ?>
+            <div class='comment'>
+              <p><a href="/users/show/<?=$comment['user_id']?>"><?=$comment['first_name'] . " " . $comment['last_name']?></a> wrote: (<?php echo time_ago(strtotime($comment['created_at']))?>)</p>
+              <p><?=$comment['comment']?></p>
+            </div>
+          <?php }
+        }
+      ?>
+      <?php if (isset($errors_comment)) { ?>
+        <div class="err"><?=$errors_comment?></div>
+      <?php } ?>
+      <?php 
+        $hidden = array('sender_id' => $logged_in['id'], 'receiver_id' => $user['id'], 'message_id' => $message['id']);
+        echo form_open('/comment', 'class="comment-form"', $hidden); 
+      ?>
+        <textarea name="comment" id="comment" cols="30" rows="10" placeholder="Leave a comment here."></textarea>
+        <input type="submit" value="Post">
+      </form>
+    </div>
   <?php }
- ?>
+    } // NO MESSAGES YET
+    else { ?>
+      <p>No messages yet!</p>
+    <?php }
+  ?>
+ </fieldset>
 </body>
 </html>
